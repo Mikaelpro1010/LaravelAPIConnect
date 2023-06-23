@@ -8,18 +8,12 @@ use App\Models\Aluno;
 
 class AlunoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index() //lista as informações de todos os dados da tabela
     {
-        return Aluno::get();
+        return Aluno::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request) //envia  os dados para serem armazenados no banco de dados
     {
         $request->validate([
             'nome' => 'required',
@@ -27,13 +21,10 @@ class AlunoController extends Controller
             'curso' => 'required',
         ]);
 
-        return Aluno::create($request->get());
+        return Aluno::create($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    public function show($id) //pesquisa dos dados do aluno pelo seu respectivo id
     {
         return Aluno::FindOrFail();
     }
